@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
-import com.example.testapplication.ui.home.SearchTopicFragment
+import com.example.testapplication.ui.topic.SearchTopicFragment
 import com.example.testapplication.ui.news.NewsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
