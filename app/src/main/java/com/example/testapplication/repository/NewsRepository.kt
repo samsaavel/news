@@ -15,34 +15,25 @@ interface NewsRepositoryContract {
     suspend fun getNewsByTopic(keyword: String): ApiResult<NewsResponse>
 }
 
-interface GeoRepositoryContract {
-    suspend fun getCountryCode(cityOrCountry: String): ApiResult<GeocodingResponse>
-}
-
 class NewsRepository @Inject constructor(private val newsAPI: NewsAPI, private val geoAPI: GeoAPI) :
-    NewsRepositoryContract, GeoRepositoryContract {
+    NewsRepositoryContract {
     internal val defaultCity = "Atlanta"
 
     suspend fun getAllNewsFromAPI(country: String): ApiResult<NewsResponse> {
-        return withContext(Dispatchers.IO) {
-            try {
-                val wrappedGeocoding = getCountryCode(country)
-                when (wrappedGeocoding) {
-                    is ApiResult.Failure -> return@withContext wrappedGeocoding
-                    is ApiResult.Success -> getAllNews(wrappedGeocoding.data.country)
-                }
-            } catch (e: Throwable) {
-                ApiResult.Failure
-            }
+        val wrappedGeocoding = getCountryCode(country)
+        return when (wrappedGeocoding) {
+            is ApiResult.Failure -> ApiResult.Failure
+            is ApiResult.Success -> getAllNews(wrappedGeocoding.data.country)
         }
     }
+
 
     override suspend fun getNewsByTopic(keyword: String): ApiResult<NewsResponse> {
         return withContext(Dispatchers.IO) {
             try {
-                return@withContext ApiResult.Success(newsAPI.getNewsByTopic(keyword))
+                ApiResult.Success(newsAPI.getNewsByTopic(keyword))
             } catch (e: Throwable) {
-                return@withContext ApiResult.Failure
+                ApiResult.Failure
             }
         }
     }
@@ -50,24 +41,21 @@ class NewsRepository @Inject constructor(private val newsAPI: NewsAPI, private v
     override suspend fun getAllNews(country: String): ApiResult<NewsResponse> {
         return withContext(Dispatchers.IO) {
             try {
-                return@withContext ApiResult.Success(
-                    newsAPI.getAllHeadlines(country)
-                )
-            } catch (e: Throwable) {
-                return@withContext ApiResult.Failure
-            }
-        }
-    }
-
-    override suspend fun getCountryCode(cityOrCountry: String): ApiResult<GeocodingResponse> {
-        return withContext(Dispatchers.IO) {
-            try {
-                val city = cityOrCountry.ifEmptySubstituteTo(defaultCity)
-                return@withContext ApiResult.Success(geoAPI.getCodeCountry(city))
+                ApiResult.Success(newsAPI.getAllHeadlines(country))
             } catch (e: Throwable) {
                 ApiResult.Failure
             }
         }
+    }
 
+    private suspend fun getCountryCode(cityOrCountry: String): ApiResult<GeocodingResponse> {
+        return withContext(Dispatchers.IO) {
+            try {
+                val city = cityOrCountry.ifEmptySubstituteTo(defaultCity)
+                ApiResult.Success(geoAPI.getCodeCountry(city))
+            } catch (e: Throwable) {
+                ApiResult.Failure
+            }
+        }
     }
 }
