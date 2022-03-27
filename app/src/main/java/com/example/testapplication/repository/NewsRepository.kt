@@ -1,9 +1,7 @@
 package com.example.testapplication.repository
 
 import com.example.testapplication.data.ApiResult
-import com.example.testapplication.data.GeocodingResponse
 import com.example.testapplication.data.NewsResponse
-import com.example.testapplication.network.GeoAPI
 import com.example.testapplication.network.NewsAPI
 import com.example.testapplication.utils.ifEmptySubstituteTo
 import kotlinx.coroutines.Dispatchers
@@ -15,27 +13,9 @@ interface NewsRepositoryContract {
     suspend fun getNewsByTopic(keyword: String): ApiResult<NewsResponse>
 }
 
-interface GeoRepositoryContract {
-    suspend fun getCountryCode(cityOrCountry: String): ApiResult<GeocodingResponse>
-}
-
-class NewsRepository @Inject constructor(private val newsAPI: NewsAPI, private val geoAPI: GeoAPI) :
-    NewsRepositoryContract, GeoRepositoryContract {
-    internal val defaultCity = "Atlanta"
-
-    suspend fun getAllNewsFromAPI(country: String): ApiResult<NewsResponse> {
-        return withContext(Dispatchers.IO) {
-            try {
-                val wrappedGeocoding = getCountryCode(country)
-                when (wrappedGeocoding) {
-                    is ApiResult.Failure -> return@withContext wrappedGeocoding
-                    is ApiResult.Success -> getAllNews(wrappedGeocoding.data.country)
-                }
-            } catch (e: Throwable) {
-                ApiResult.Failure
-            }
-        }
-    }
+class NewsRepository @Inject constructor(private val newsAPI: NewsAPI) :
+    NewsRepositoryContract {
+    internal val defaultCountry = "us"
 
     override suspend fun getNewsByTopic(keyword: String): ApiResult<NewsResponse> {
         return withContext(Dispatchers.IO) {
@@ -51,23 +31,11 @@ class NewsRepository @Inject constructor(private val newsAPI: NewsAPI, private v
         return withContext(Dispatchers.IO) {
             try {
                 return@withContext ApiResult.Success(
-                    newsAPI.getAllHeadlines(country)
+                    newsAPI.getAllHeadlines(country.ifEmptySubstituteTo(defaultCountry))
                 )
             } catch (e: Throwable) {
                 return@withContext ApiResult.Failure
             }
         }
-    }
-
-    override suspend fun getCountryCode(cityOrCountry: String): ApiResult<GeocodingResponse> {
-        return withContext(Dispatchers.IO) {
-            try {
-                val city = cityOrCountry.ifEmptySubstituteTo(defaultCity)
-                return@withContext ApiResult.Success(geoAPI.getCodeCountry(city))
-            } catch (e: Throwable) {
-                ApiResult.Failure
-            }
-        }
-
     }
 }
