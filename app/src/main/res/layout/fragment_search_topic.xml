@@ -1,13 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.SearchTopicFragment">
+    android:background="@color/red"
+    tools:context=".ui.topic.SearchTopicFragment">
 
-    <TextView
+    <EditText
+        android:id="@+id/user_text"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="i;m a searh fragment shdbfjkfdshfjfd" />
+        android:layout_height="40dp"
+        android:layout_margin="8dp"
+        android:background="@color/white"
+        android:hint="Search by Topic"
+        android:singleLine="true"
 
-</FrameLayout>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/white"
+        android:paddingTop="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/user_text"
+        tools:listitem="@layout/row_topics" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

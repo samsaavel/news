@@ -6,9 +6,10 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.14" />
         <entry key="app/src/main/res/layout/fragment_home_activity.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/fragment_news.xml" value="0.2" />
-        <entry key="app/src/main/res/layout/fragment_search_topic.xml" value="0.33177083333333335" />
+        <entry key="app/src/main/res/layout/fragment_search_topic.xml" value="0.1" />
         <entry key="app/src/main/res/layout/home_activity.xml" value="0.26992753623188404" />
         <entry key="app/src/main/res/layout/item_row_news.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/row_topics.xml" value="0.17864583333333334" />
         <entry key="app/src/main/res/menu/bottom_nav.xml" value="0.20625" />
         <entry key="app/src/main/res/menu/nav_menu.xml" value="0.37604166666666666" />
       </map>
