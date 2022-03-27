@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">TestApplication</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home_music">Home Music</string>
+    <string name="library_music">Library Music</string>
+    <string name="lyrics_music">Lyrics Music</string>
+    <string name="pendings">Pendings</string>
+</resources>
