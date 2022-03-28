@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="nav_menu_height">60dp</dimen>
+    <dimen name="marginTop">5dp</dimen>
+    <dimen name="size_font">22sp</dimen>
+    <dimen name="margin_right_text">10dp</dimen>
+    <dimen name="margin_cards">8dp</dimen>
+    <dimen name="margin_inputs">8dp</dimen>
+    <dimen name="margin_recycler">15dp</dimen>
+    <dimen name="size_input">40dp</dimen>
 </resources>

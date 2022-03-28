@@ -10,10 +10,10 @@
     <EditText
         android:id="@+id/user_text"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_margin="8dp"
+        android:layout_height="@dimen/size_input"
+        android:layout_margin="@dimen/margin_inputs"
         android:background="@color/white"
-        android:hint="Search by Topic"
+        android:hint="@string/text_topic"
         android:singleLine="true"
 
         app:layout_constraintStart_toStartOf="parent"
@@ -23,9 +23,9 @@
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="@dimen/margin_recycler"
         android:background="@color/white"
-        android:paddingTop="10dp"
+        android:paddingTop="@dimen/margin_right_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/user_text"
         tools:listitem="@layout/row_topics" />

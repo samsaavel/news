@@ -19,11 +19,10 @@ class NewsViewModel @Inject constructor(
     private var _topicState: MutableStateFlow<TopicState> =
         MutableStateFlow(TopicState.None)
     val topicState: StateFlow<TopicState> by lazy { _topicState }
-    private val keyword = ""
 
     fun getNewsHeadlines(newCountry: String) {
         viewModelScope.launch {
-            _newsState.value = when (val response = newsRepo.getAllNews(newCountry)) {
+            _newsState.value = when (val response = newsRepo.getNewsFromAPI(newCountry)) {
                 is ApiResult.Failure -> NewsState.Failure
                 is ApiResult.Success -> NewsState.Success(response.data)
             }

@@ -4,30 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.news.NewsFragment"
-    android:background="@color/red">
+    android:background="@color/red"
+    tools:context=".ui.news.NewsFragment">
 
     <EditText
         android:id="@+id/user_text"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_margin="8dp"
+        android:layout_height="@dimen/size_input"
+        android:layout_margin="@dimen/margin_inputs"
         android:background="@color/white"
-        android:hint="Enter your city"
+        android:hint="@string/input_city"
         android:singleLine="true"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:background="@color/white"
-        android:layout_marginTop="15dp"
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:paddingTop="10dp"
-        tools:listitem="@layout/item_row_news"
+        android:layout_marginTop="@dimen/margin_recycler"
+        android:background="@color/white"
+        android:paddingTop="@dimen/margin_right_text"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/user_text"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        tools:listitem="@layout/item_row_news" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

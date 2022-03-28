@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp">
+    android:layout_margin="@dimen/marginTop">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/content_news"
@@ -19,7 +19,7 @@
             android:ellipsize="middle"
             android:textAllCaps="true"
             android:textColor="@color/white"
-            android:textSize="22sp"
+            android:textSize="@dimen/size_font"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -28,9 +28,9 @@
             android:id="@+id/published_news"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="@dimen/margin_right_text"
             android:textColor="@color/white"
-            android:textSize="22sp"
+            android:textSize="@dimen/size_font"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,7 +38,7 @@
             android:id="@+id/body_news"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="@dimen/marginTop"
             android:ellipsize="end"
             android:textColor="@color/white"
             app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +48,7 @@
             android:id="@+id/cardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_margin="@dimen/margin_cards"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/body_news">
 

@@ -100,7 +100,7 @@ class NewsFragment : DaggerFragment(), NewsSelectedListener {
         newsAdapter.setNewsItems(newsResponse.articles)
     }
 
-    private fun newsClean(clear:Boolean){
+    private fun newsClean(clear: Boolean) {
         newsAdapter.updatedata(clear)
     }
 

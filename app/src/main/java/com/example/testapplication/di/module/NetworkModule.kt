@@ -20,7 +20,7 @@ class NetworkModule {
     private val apiKeyValueNews = "ef788c8a6fa94fd29a67d2ea0e7f0123"
     private val defaultTime: Long = 15
 
-    private val baseUrlGeo = "http://api.openweathermap.org/"
+    private val baseUrlGeo = "https://api.openweathermap.org/"
     private val apiKeyNameGeo = "appid"
     private val apiKeyValueGeo = "249e09d24ba11ef5fb9c69164b1e69bc"
 

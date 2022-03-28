@@ -8,5 +8,5 @@ interface GeoAPI {
     @GET("geo/1.0/direct")
     suspend fun getCodeCountry(
         @Query("q") cityOrCountry: String
-    ): GeocodingResponse
+    ): List<GeocodingResponse>
 }
